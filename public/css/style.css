@@ -1,0 +1,95 @@
+/* .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+} */
+
+th.text-vertical {
+    /* transform-origin: 20% 50%; */
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: center;
+}
+
+.table > :not(:first-child) {
+    border-top: 0px solid #B6CFF5;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: #B6CFF5;
+  border-style: solid;
+  border-width: 1px;
+
+}
+
+.table-bordered {
+    border: 1px solid #B6CFF5 !important;
+}
+
+.style-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='grey' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 50%;
+    border: none;
+    outline: 0px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.style-select  option {
+    background-color: #ffffff !important;
+}
+
+.style-table.table > :not(caption) > * > * {
+    padding: 0 0;
+    line-height: 32px;
+}
+
+/* [selected] {
+    background-color: red;
+} */
+
+.level {
+    width: 30px;
+    text-align: center;
+}
+
+.level-desc {
+    margin-left: 20px;
+}
+
+.level-detail {
+    width: 30%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.modal {
+    padding-top: 70px;
+    overflow-y:auto;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+}
+
+.date-input {
+    flex: 0 0 90%;
+}
+
+.input-group-addon {
+    height: 34px;
+}
