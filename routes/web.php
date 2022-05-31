@@ -30,8 +30,9 @@ Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 
-Route::get('/skills-matrix', [SkillLevelController::class, 'getData']);
-Route::resource('skill-level', SkillLevelController::class);
+Route::get('/skills-matrix/index', [SkillLevelController::class, 'index'])->name('skill-matrix.index');
+Route::post('skill-matrix/store', [SkillLevelController::class, 'createOrUpdate'])->name('skill-matrix.createOrUpdate');
+// Route::resource('skill-level', SkillLevelController::class);
 
 
 

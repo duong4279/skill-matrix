@@ -36,7 +36,7 @@ class GoogleController extends Controller
       
                 Auth::login($finduser);
      
-                return redirect('/skills-matrix');
+                return redirect('/skills-matrix/index');
       
             }else{
                 $newUser = User::create([

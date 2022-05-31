@@ -72,7 +72,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form action="{{ route('skill-level.create') }}" id="formModal" name="formModal" method="GET">
+          <form action="{{ route('skill-matrix.createOrUpdate') }}" id="formModal" name="formModal" method="POST">
             @csrf
             <input type="hidden" name="user_id"/>
             <input type="hidden" name="skill_id"/>

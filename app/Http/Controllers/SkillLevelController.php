@@ -2,50 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\LevelService;
+use App\Services\SkillService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Skill;
-use App\Models\Level;
-use App\Models\SkillLevel;
-use Carbon\Carbon;
+
+use App\Services\SkillLevelService;
+use Exception;
 
 class SkillLevelController extends Controller
 {
-    public function getData() {
-        $users = User::all();
-        $skills = Skill::all();
-        $levels = Level::all();
-        $skillLevel = SkillLevel::all();
-        return view('skills-matrix.index', compact('users', 'skills', 'levels', 'skillLevel'));
+    protected $skillLevelService;
+    protected $skillService;
+    protected $levelService;
+    protected $userService;
+
+    public function __construct(
+        SkillLevelService $skillLevelService,
+        SkillService $skillService,
+        LevelService $levelService,
+        UserService $userService,)
+    {
+        $this->skillLevelService = $skillLevelService;
+        $this->skillService = $skillService;
+        $this->levelService = $levelService;
+        $this->userService = $userService;
     }
 
-    public function create(Request $request) {
-        
-        $user_id = $request->user_id;
-        $skill_id = $request->skill_id;
-        $data = SkillLevel::where([
-            ['user_id', $user_id],
-            ['skill_id', $skill_id]
-        ])->first();
-        if($data) {
-            $data->user_id = $request->user_id;
-            $data->skill_id = $request->skill_id;
-            $data->level_id = $request->level_id;
-            $time = $request->date;
-            $date = Carbon::createFromFormat('m/d/Y', $time)->format('Y-m-d');
-            $data->date = $date;
-            $data->save();
-        } else {
-            $skillLevel = new SkillLevel();
-            $skillLevel->user_id = $request->user_id;
-            $skillLevel->skill_id = $request->skill_id;
-            $skillLevel->level_id = $request->level_id;
-            $time = $request->date;
-            $date = Carbon::createFromFormat('m/d/Y', $time)->format('Y-m-d');
-            $skillLevel->date = $date;
-            $skillLevel->save();
-        }       
-        return redirect('/skills-matrix');
-        // dd($request->daterange);
+    public function createOrUpdate(Request $request)
+    {
+
+        $this->skillLevelService->createOrUpdate($request);
+        return redirect('/skills-matrix/index');
+    }
+
+    public function index() 
+    {
+        try {
+            $skillLevel = $this->skillLevelService->getSkillLevel();
+            $skills = $this->skillService->getAllSkill();
+            $levels = $this->levelService->getAllLevel();
+            $users = $this->userService->getAllUser();
+            
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+        return view('skills-matrix.index', compact('users', 'skills', 'levels', 'skillLevel'));
     }
 }
