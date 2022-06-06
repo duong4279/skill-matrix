@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use App\Repositories\UserRepository;
 
-class UserService 
+class UserService
 {
     protected $userRepository;
 

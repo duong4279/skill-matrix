@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Skill;
 
-class SkillRepository 
+class SkillRepository
 {
     protected $skill;
 

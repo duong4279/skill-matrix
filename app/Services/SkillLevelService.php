@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Repositories\SkillLevelRepository;
 use Exception;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
-class SkillLevelService 
+class SkillLevelService
 {
     protected $skillLevelRepository;
 
@@ -14,24 +16,28 @@ class SkillLevelService
         $this->skillLevelRepository = $skillLevelRepository;
     }
 
-    public function getSkillLevel() 
+    public function getSkillLevel()
     {
         return $this->skillLevelRepository->getAll();
     }
 
-    public function createOrUpdate($data) 
+    public function createOrUpdate($data)
     {
         try {
             $result = $this->skillLevelRepository->findData($data);
-            if($result) {
+            if ($result) {
                 $this->skillLevelRepository->update($data);
-                return redirect()->route('skill-matrix.index')->with(["message" => "Updated success"]);
+
+                return redirect()->route('skill-matrix.index')->with(['message' => 'Updated success']);
             } else {
                 $this->skillLevelRepository->save($data);
-                return redirect()->route('skill-matrix.index')->with(["message" => "Created success"]);
+
+                return redirect()->route('skill-matrix.index')->with(['message' => 'Created success']);
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
+            Log::channel('custom')->info('Create or update fail');
+
+            return abort(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

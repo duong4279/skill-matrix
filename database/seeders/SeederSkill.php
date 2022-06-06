@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -78,7 +77,7 @@ class SeederSkill extends Seeder
             ],
             [
                 'skill_name' => ('AWS'),
-            ],    
+            ],
         ];
 
         try {
@@ -86,8 +85,6 @@ class SeederSkill extends Seeder
                 DB::table('skills')->insert($skill);
             }
         } catch (\Throwable $th) {
-
         }
-        
     }
 }

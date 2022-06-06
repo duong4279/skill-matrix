@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repositories\SkillRepository;
 
-class SkillService 
+class SkillService
 {
     protected $skillRepository;
 

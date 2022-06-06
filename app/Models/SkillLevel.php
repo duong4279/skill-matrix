@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class SkillLevel extends Model
 {
     use HasFactory;
-    protected $table = "skill_levels";
+    protected $table = 'skill_levels';
 
     protected $fillable = [
-        "user_id",
-        "skill_id",
-        "level_id",
-        "date",
+        'user_id',
+        'skill_id',
+        'level_id',
+        'date',
     ];
-
-    
 }

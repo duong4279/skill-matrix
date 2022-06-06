@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Level;
 
-class LevelRepository 
+class LevelRepository
 {
     protected $level;
 

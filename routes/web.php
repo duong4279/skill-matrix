@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SkillLevelController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::controller(GoogleController::class)->group(function(){
+Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
@@ -33,8 +34,3 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('/skills-matrix/index', [SkillLevelController::class, 'index'])->name('skill-matrix.index');
 Route::post('skill-matrix/store', [SkillLevelController::class, 'createOrUpdate'])->name('skill-matrix.createOrUpdate');
 // Route::resource('skill-level', SkillLevelController::class);
-
-
-
-
-

@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Services;
 
 use App\Repositories\LevelRepository;
 
-class LevelService 
+class LevelService
 {
     protected $levelRepository;
 
